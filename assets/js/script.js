@@ -81,7 +81,13 @@ console.log('made it to handle form submit')
 }
 
 function deleteProject(){
-  console.log('todelete')
+  let projectIndex = parseInt($(this).attr('data-index'));
+  let projects = getFromStorage()
+
+  projects.splice(projectIndex, 1)
+  saveProjectsToStorage(projects)
+  projectsDisplay()
 }
 projectsDisplay()
+displayProjects.on('click', '.btn-delete-project', deleteProject)
 projectForm.on('submit', handleFormSubmit)
